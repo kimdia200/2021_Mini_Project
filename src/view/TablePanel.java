@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -16,6 +17,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import controller.EngController;
@@ -73,6 +76,36 @@ public class TablePanel extends JPanel {
 		add(btn2);
 		add(btn3);
 		add(btn4);
+		
+		model.addTableModelListener(new TableModelListener() {
+			
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				//실제 전체 길이
+				int rowLen = model.getRowCount();
+				//실제 컬럼 길이
+				int colLen = model.getColumnCount();
+				
+				List<Eng> newList = new ArrayList<Eng>();
+				
+				for (int i = 0; i < rowLen; i++) {
+					Eng newEng = new Eng();
+					for (int j = 0; j < colLen; j++) {
+						Object data = model.getValueAt(i, j);
+//						System.out.println(data);
+						//0열 = 이름, 1열 = 주소, 2열 = 나이, 3열 = 결혼여부
+						switch(j) {
+						case 0 : newEng.setWord((String)data);break;
+						case 1 : newEng.setMeaning((String)data);break;
+						case 2 : newEng.setSentence((String)data);break;
+						
+						}
+					}
+					newList.add(newEng);
+				}
+				new EngController().modifyList(newList);
+			}
+		});
 
 	}
 

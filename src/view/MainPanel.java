@@ -73,7 +73,6 @@ public class MainPanel extends JPanel {
 				}
 				JPanel nextPanel = MainFrame.panels[num];
 				MyUtill.changePanel(parent, MainPanel.this, nextPanel);
-
 			}
 		};
 		return listener;

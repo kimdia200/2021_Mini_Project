@@ -24,4 +24,8 @@ public class EngController {
 	public List<Eng> loadEngList(){
 		return io.loadEngList();
 	}
+	
+	public void modifyList(List<Eng> list) {
+		io.modifyList(list);
+	}
 }

@@ -11,6 +11,10 @@ public class Eng implements Serializable{
 	private String sentence;
 	
 	
+	public Eng() {
+		super();
+	}
+
 	public Eng(String word, String meaning, String sentence) {
 		super();
 		this.word = word;
