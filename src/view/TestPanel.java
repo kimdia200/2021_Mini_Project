@@ -28,7 +28,6 @@ public class TestPanel extends JPanel{
 	private JFrame parent;
 	private List<Eng> list = MainFrame.list;
 	private int size = list.size();
-	private int ran = (int)(Math.random()*size);
 	private BufferedImage image;
 	private JLabel txt1;
 	private JButton btn2;
@@ -113,7 +112,6 @@ public class TestPanel extends JPanel{
 	public void reload() {
 		list=new EngController().loadEngList();
 		size = list.size();	
-		ran = (int)(Math.random()*size);
 		if(list.size()!=0) {
 			Set<Integer> set = new HashSet<>();
 			// 문제 3개 색출
@@ -129,9 +127,8 @@ public class TestPanel extends JPanel{
 			for (int a : set) {
 				arr[i++] = a;
 			}
-			shuffle(arr, 10);
 			// 문제 제시 = 첫번재꺼로
-			q=list.get(arr[0]);
+			q=list.get(arr[(int)(Math.random()*3)]);
 			txt1.setText(q.getWord());
 			
 			// 배열 셔플
